@@ -1,0 +1,18 @@
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Website Name</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)] = "WebsiteName"
+        placeholder="Enter Website Name"> 
+    </div>
+    <label class="col-sm-2 col-form-label">Website URL</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)] = "WebsiteUrl"
+         placeholder="Enter URL"> 
+    </div>
+</div>
+<button (click) = "addWebsite()" *ngIf = "web.WebsiteName==''" class="btn btn-primary">
+    Add
+</button>
+<button (click) = "editWebsite()" *ngIf = "web.WebsiteName!=''" class="btn btn-primary">
+    Update
+</button>

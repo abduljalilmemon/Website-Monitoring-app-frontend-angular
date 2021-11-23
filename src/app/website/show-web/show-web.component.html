@@ -1,0 +1,53 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-right m-2" 
+    data-toggle="modal" data-target="#exampleModal" 
+    (click)="toggleNavbar = !toggleNavbar" (click) = "addClick()"
+    data-backdrop="static" >
+    Add Website
+</button>   
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1"  [ngbCollapse]="!toggleNavbar" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="close" (click)="ActivateAddEditWebComp =! ActivateAddEditWebComp" 
+          (click)="toggleNavbar =! toggleNavbar" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <app-add-edit-web [web] = "web" 
+            *ngIf="ActivateAddEditWebComp" 
+            (myEvent)="refreshWebList()"></app-add-edit-web>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Webiste Name</th>
+            <th>Website URL</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let websiteItem of websiteList">
+            <td>{{websiteItem.name}}</td>
+            <td>{{websiteItem.URL}}</td>
+            <td>
+                <button type="button" class="btn btn-dark mr-1"
+                data-toggle="modal" data-target="#exampleModal" 
+                (click) = "toggleNavbar = !toggleNavbar"
+                (click) = "editClick(websiteItem)">Edit</button>
+                <button type="button" class="btn btn-dark mr-1"  
+                (click) = "deleteClick(websiteItem)">
+                Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
